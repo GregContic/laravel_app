@@ -3,15 +3,28 @@
 @section('content')
 
 <div class="card mt-5">
-    <h2 class="card-header">Laravel CRUD Example</h2>
+    <h2 class="card-header">My Notes</h2>
     <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                Welcome, {{ Auth::user()->name }}!
+            </div>
+            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                @csrf
+                <button type="submit" class="btn btn-outline-danger btn-sm">
+                    <i class="fa fa-sign-out"></i> Logout
+                </button>
+            </form>
+        </div>
 
         @if(session('success'))
             <div class="alert alert-success" role="alert">{{ session('success') }}</div>
         @endif
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a class="btn btn-success btn-sm" href="{{ route('notes.create') }}"><i class="fa fa-plus"></i> Create New Note</a>
+            <a class="btn btn-success btn-sm" href="{{ route('notes.create') }}">
+                <i class="fa fa-plus"></i> Create New Note
+            </a>
         </div>
 
         <table class="table table-bordered table-striped mt-4">
